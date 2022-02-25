@@ -1,0 +1,313 @@
+body {
+    background: #333;
+    font-family: var(--sl-font-family);
+}
+header {
+    display: grid;
+    grid-template-columns: 60px 100px;
+    grid-template-areas: 'menu-button main';
+    width: 100%;
+    height: var(--fitzxel-bar-height);
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    /* background: #2f3542; */
+    background: #222e;
+}
+header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--fitzxel-accent-color);
+}
+.menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    height: 50px;
+    cursor: pointer;
+    grid-area: menu-button;
+}
+.menu-button ion-icon {
+    font-size: 1.7em;
+}
+.main-logo {
+    display: flex;
+    align-items: center;
+    grid-area: main;
+}
+.docsite-section {
+    margin-top: var(--fitzxel-bar-height);
+    display: flex;
+    flex-direction: column;
+    flex: 1 0;
+}
+.docsite-main-content {
+    display: grid;
+    grid-template-columns: minmax(0px,1fr) minmax(752px,936px) minmax(160px,1fr);
+    grid-template-rows: 1fr;
+    grid-gap: 24px;
+}
+h1 {
+    font-size: 18px;
+    font-weight: 500;
+}
+h2 {
+    font: 400 24px/32px var(--sl-font-family);
+    margin: 48px 0 24px;
+}
+h2:first-child {
+    margin: 8px 0 24px;
+}
+h3 {
+    font-size: 16px;
+    font-weight: 400;
+}
+p {
+    margin: 16px 0;
+}
+header h1 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #eee;
+}
+.page-content {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    max-width: 936px;
+    min-width: 0;
+    margin: 24px 0;
+    border-radius: 20px;
+    background: #222;
+    box-shadow: 0 0 10px 0px rgb(0 0 0 / 50%);
+    overflow: hidden;
+    /* margin-left: 250px;
+    width: 1000px;
+    padding-top: var(--fitzxel-bar-height); */
+}
+.section {
+    height: 100%;
+    margin-bottom: 20px;
+    color: #eee;
+}
+.section:first-child {
+    margin-top: 20px;
+}
+.section-title {
+    margin-top: 50px;
+    margin-bottom: 8px;
+}
+.section-title:first-child {
+    margin-top: 0;
+}
+.section-text {
+    text-indent: 15px;
+}
+.page-banner-container {
+    height: var(--fitzxel-banner-height);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: hidden;
+    /* margin-bottom: 15px; */
+}
+.page-banner-container h1 {
+    position: absolute;
+    margin-top: calc(var(--fitzxel-banner-height) - 100px + 60px);
+    margin-left: 30px;
+}
+.page-banner-container::before {
+    content: none;
+    width: 891px;
+    height: 300px;
+    position: absolute;
+    background: linear-gradient(0deg, rgb(0 0 0 / 10%), transparent);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.page-banner-img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    object-position: top;
+    object-fit: cover;
+}
+.article {
+    padding: 40px;
+}
+
+/*---aside---*/
+.docsite-sidebar {
+    grid-column: 3;
+    grid-row: 1;
+    min-width: 0;
+    width: auto;
+    margin: 24px 24px 0 0;
+}
+.sidebar-content {
+    position: fixed;
+}
+.docsite-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 4 0;
+    color: #eee;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+}
+.docsite-nav-link:hover {
+    color: var(--fitzxel-accent-color);
+}
+.docsite-nav-link.active {
+    color: var(--docsite-nav-active-color);
+}
+.docsite-nav-list {
+    padding-left: 12px;
+    padding-right: 8px;
+    border-left: 4px solid var(--fitzxel-accent-color);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.docsite-nav-item {
+    list-style: none;
+}
+.docsite-nav-text {
+    font-size: 13px;
+    padding: 4px 0;
+}
+.docsite-nav-title {
+    font-weight: 700;
+    color: #ddd;
+}
+
+.navigation {
+    position: fixed;
+    left: 5px;
+    top: var(--fitzxel-bar-height);
+    height: calc(100% - var(--fitzxel-bar-height));
+    width: 60px;
+    /* background: #2f3542; */
+    background: #222e;
+    box-shadow: -5px 0 0 var(--fitzxel-accent-color);
+    /* border-right: 10px solid transparent; */
+    overflow-x: hidden;
+    /* border-top-right-radius: 20px; */
+    border-bottom-right-radius: 20px;
+    transition: 0.5s;
+    transition-property: width, transform;
+}
+.navigation:hover {
+    width: 250px;
+}
+.navigation.open {
+    width: 250px;
+    transform: translateX(0);
+}
+.navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-right: 5px;
+    padding-top: 30px;
+}
+.navigation ul li {
+    position: relative;
+    list-style: none;
+    width: 100%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.navigation ul li.active {
+    background: var(--fitzxel-accent-color);
+}
+.navigation ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: #eee;
+}
+.navigation ul li.active a::before {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: -15px -15px 0 var(--fitzxel-accent-color);
+}
+.navigation ul li.active a::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: -15px 15px 0 var(--fitzxel-accent-color);
+}
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 50px;
+    height: 50px;
+    line-height: 60px;
+    text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+    position: relative;
+    font-size: 1.5em;
+    z-index: 1;
+}
+.navigation ul li a .title {
+    position: relative;
+    display: block;
+    padding-left: 10px;
+    height: 50px;
+    line-height: 50px;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 1253px) {
+    .docsite-section {
+        margin-left: 65px;
+    }
+    .page-content {
+        margin: 14px;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 1141px) {
+    .docsite-main-content {
+        display: block;
+    }
+    .docsite-sidebar {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        --fitzxel-banner-height: 200px;
+    }
+    .docsite-section {
+        margin-left: 0;
+    }
+    .article {
+        padding: 20px;
+    }
+    .navigation {
+        transform: translateX(-65px);
+    }
+}

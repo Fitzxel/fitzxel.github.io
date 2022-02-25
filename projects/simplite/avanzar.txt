@@ -1,0 +1,5 @@
+basarme en el dev-site de youtube para el diseño de la pagina (articulo, parrafos, grid, etc)
+
+agregar un nuevo elemento hijo de los h2: "guide-mark" con este estilo:
+position: relative;
+top: -60px;
