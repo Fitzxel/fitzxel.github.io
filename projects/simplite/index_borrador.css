@@ -22,6 +22,10 @@ header::before {
     height: 100%;
     background: var(--fitzxel-accent-color);
 }
+guide-mark {
+    position: relative;
+    top: -60px;
+}
 .menu-button {
     display: flex;
     align-items: center;
