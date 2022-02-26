@@ -27,3 +27,22 @@ document.querySelector('.docsite-section').addEventListener('click', ()=> {
         navigationOpen = false;
     }
 })
+
+let projectsSubmenuOpen = false;
+const projectsList = document.querySelector('#projects-list');
+
+if (document.URL.includes('projects/')) {
+    projectsList.classList.add('open');
+    projectsSubmenuOpen = true;
+}
+
+document.querySelector('#projects-drop-submenu').addEventListener('click', ()=> {
+    if (projectsSubmenuOpen == false) {
+        projectsList.classList.add('open');
+        projectsSubmenuOpen = true;
+    }
+    else if (projectsSubmenuOpen == true) {
+        projectsList.classList.remove('open');
+        projectsSubmenuOpen = false;
+    }
+})

@@ -227,12 +227,14 @@ header h1 {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
-.navigation ul li ul {
+.navigation ul li ul.submenu {
     margin-left: 10px;
     height: 0px;
     overflow: hidden;
     transition: .5s;
     transition-property: height;
+}
+.navigation ul li.open ul.submenu {
     height: 50px;
 }
 .navigation ul li .flex {
@@ -250,6 +252,12 @@ header h1 {
     grid-template-areas: "main-icon title";
     text-decoration: none;
     color: #eee;
+}
+.navigation ul li a:hover {
+    color: var(--fitzxel-accent-color);
+}
+.navigation ul li.active a:hover {
+    color: #111;
 }
 .navigation ul li.sub a.active {
     color: #111;
@@ -294,7 +302,15 @@ header h1 {
 .navigation ul li .icon.drop-submenu {
     display: block;
     cursor: pointer;
+    transition: .5s;
+    transition-property: transform;
     /* margin-left: 80px; */
+}
+.navigation ul li.active .icon.drop-submenu:hover {
+    color: #111;
+}
+.navigation ul li.open .icon.drop-submenu {
+    transform: rotate(180deg);
 }
 .navigation ul li a .icon.drop-submenu ion-icon {
     font-size: 1.3em;
