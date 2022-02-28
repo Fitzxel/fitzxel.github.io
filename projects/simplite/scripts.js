@@ -21,7 +21,7 @@ document.querySelector('#navigation-button').addEventListener('click', ()=> {
     }
 })
 
-document.querySelector('.docsite-section').addEventListener('click', ()=> {
+document.querySelector('.section').addEventListener('click', ()=> {
     if (navigationOpen == true) {
         navigationMenu.classList.remove('open');
         navigationOpen = false;

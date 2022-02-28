@@ -32,3 +32,16 @@
 :link, :visited {
     color: #1a73e8;
 }
+
+/*---media-screen---*/
+/* @media screen and (max-width: 1253px) {
+
+}
+@media screen and (max-width: 1141px) {
+
+} */
+@media screen and (max-width: 768px) {
+    :root {
+        --fx-banner-height: 200px;
+    }
+}
