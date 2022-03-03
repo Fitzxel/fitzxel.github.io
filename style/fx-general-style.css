@@ -12,6 +12,10 @@
     --fx-accent-color: #ff6d00;
     --fx-bar-height: 50px;
     --fx-banner-height: 300px;
+    --fx-banner-info-lateral-margin: 30px;
+    --fx-h1-size: 18px;
+    --fx-h2-size: 22px;
+    --fx-p-size: 15px;
     --docsite-link-color: #1a73e8;
     --docsite-nav-active-color: #185abc;
     --sl-accent-color: #0984E3;
@@ -40,8 +44,6 @@
 @media screen and (max-width: 1141px) {
 
 } */
-@media screen and (max-width: 768px) {
-    :root {
-        --fx-banner-height: 200px;
-    }
-}
+/* @media screen and (max-width: 768px) {
+    
+} */

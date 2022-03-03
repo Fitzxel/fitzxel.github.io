@@ -52,7 +52,6 @@ header h1 {
     margin-left: 65px;
     display: flex;
     flex-direction: column;
-    flex: 1 0;
 }
 
 /*---navigation---*/

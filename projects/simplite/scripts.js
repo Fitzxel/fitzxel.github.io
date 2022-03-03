@@ -1,3 +1,5 @@
+setWidthDsI();
+
 const listButton = document.querySelectorAll('.content-list-aside__button');
 function activeLink() {
     listButton.forEach((item) =>
@@ -46,3 +48,11 @@ document.querySelector('#projects-drop-submenu').addEventListener('click', ()=> 
         projectsSubmenuOpen = false;
     }
 })
+
+window.addEventListener('resize', ()=> {
+    setWidthDsI();
+})
+
+function setWidthDsI() {
+    document.querySelector('.docsite-banner').querySelector('.info').style.width = `calc(${window.getComputedStyle(document.querySelector('.docsite-banner')).width} - var(--fx-banner-info-lateral-margin) * 2)`;
+}

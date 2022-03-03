@@ -1,10 +1,10 @@
 /*---texts---*/
 h1 {
-    font-size: 18px;
+    font-size: var(--fx-h1-size);
     font-weight: 500;
 }
 h2 {
-    font: 400 24px/32px var(--sl-font-family);
+    font: 400 var(--fx-h2-size)/32px var(--sl-font-family);
     margin: 48px 0 24px;
 }
 h2:first-child {
@@ -15,6 +15,7 @@ h3 {
     font-weight: 400;
 }
 p {
+    font-size: var(--fx-p-size);
     margin: 16px 0;
 }
 
@@ -22,7 +23,6 @@ p {
 .docsite-main-content {
     display: grid;
     grid-template-columns: 1fr minmax(752px,936px) minmax(160px,1fr);
-    grid-template-rows: 1fr;
     grid-gap: 24px;
 }
 .docsite-sidebar {
@@ -73,7 +73,7 @@ p {
 }
 
 /*---page-content---*/
-.page-content {
+.docsite-article {
     grid-column: 2;
     grid-row: 1;
     align-self: start;
@@ -87,26 +87,47 @@ p {
 }
 
 /*---page-banner---*/
-.page-banner-container {
+.docsite-banner {
     height: var(--fx-banner-height);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     overflow: hidden;
     /* margin-bottom: 15px; */
 }
-.page-banner-container h1 {
+.docsite-banner .info {
+    position: absolute;
+    margin: calc(var(--fx-banner-height) - 100px + 55px) var(--fx-banner-info-lateral-margin) 0;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 30px 1fr max-content;
+    grid-template-areas: 'icon name date';
+}
+.docsite-banner svg {
+    width: 30px;
+    height: 30px;
+    /* margin-right: 3px; */
+    filter: brightness(100);
+    grid-area: icon;
+}
+.docsite-banner h1 {
+    grid-area: name;
+}
+.docsite-banner .date {
+    grid-area: date;
+}
+/* .docsite-banner .date-info h1 {
     position: absolute;
     margin-top: calc(var(--fx-banner-height) - 100px + 60px);
     margin-left: 30px;
-}
-.page-banner-img {
+} */
+.docsite-banner .img {
     width: 100%;
     height: 100%;
     aspect-ratio: 16/9;
     object-position: top;
     object-fit: cover;
 }
-.page-banner-container::before {
+.docsite-banner::before {
     content: none;
     width: 891px;
     height: 300px;
@@ -125,17 +146,34 @@ guide-mark {
     top: -60px;
 }
 
-
 @media screen and (max-width: 1141px) {
-    .docsite-main-content {
+    /* .docsite-main-content {
         display: block;
-    }
+    } */
     .docsite-sidebar {
         display: none;
     }
 }
 @media screen and (max-width: 768px) {
+    .docsite-main-content {
+        display: block;
+        padding: 0 3%;
+    }
     .article {
         padding: 20px;
+    }
+    :root {
+        --fx-banner-height: 250px;
+        --fx-banner-info-lateral-margin: 10px;
+    }
+}
+@media screen and (max-width: 600px) {
+    :root {
+        --fx-banner-height: 150px;
+    }
+}
+@media screen and (max-width: 425px) {
+    :root {
+        --fx-h1-size: 15px;
     }
 }
