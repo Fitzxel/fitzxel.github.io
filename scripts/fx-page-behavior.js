@@ -54,7 +54,9 @@ window.addEventListener('resize', ()=> {
 })
 
 function setWidthDsI() {
-    document.querySelector('.docsite-banner').querySelector('.info').style.width = `calc(${window.getComputedStyle(document.querySelector('.docsite-banner')).width} - var(--fx-banner-info-lateral-margin) * 2)`;
+    if (document.documentElement.getAttribute('fx-site') == 'docsite') {
+        document.querySelector('.docsite-banner').querySelector('.info').style.width = `calc(${window.getComputedStyle(document.querySelector('.docsite-banner')).width} - var(--fx-banner-info-lateral-margin) * 2)`;
+    }
 }
 
 const buttonsClick = document.querySelectorAll('.click-button');
