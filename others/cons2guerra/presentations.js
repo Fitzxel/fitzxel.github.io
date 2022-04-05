@@ -1,6 +1,5 @@
 if (!localStorage.getItem('slidesOn')) {
     localStorage.setItem('slidesOn', 'true');
-    document.querySelector('#slides-button').classList.add('active');
 }
 
 const sections = document.querySelectorAll('.presentation-sections');
@@ -59,3 +58,7 @@ document.querySelector('#slides-button').addEventListener('click', () => {
         document.querySelector('#slides-button').classList.add('active');
     }
 })
+
+if (localStorage.getItem('slidesOn') == 'true') {
+    document.querySelector('#slides-button').classList.add('active');
+}
