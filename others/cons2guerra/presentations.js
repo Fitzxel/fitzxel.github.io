@@ -1,6 +1,6 @@
 if (!localStorage.getItem('slidesOn')) {
     localStorage.setItem('slidesOn', 'true');
-    document.querySelector('#slides,-button').classList.add('active');
+    document.querySelector('#slides-button').classList.add('active');
 }
 
 const sections = document.querySelectorAll('.presentation-sections');
