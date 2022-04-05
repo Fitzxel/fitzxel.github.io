@@ -1,24 +1,3 @@
-/*---texts---*/
-h1 {
-    font-size: var(--fx-h1-size);
-    font-weight: 500;
-}
-h2 {
-    font: 400 var(--fx-h2-size)/32px var(--sl-font-family);
-    margin: 48px 0 24px;
-}
-h2:first-child {
-    margin: 8px 0 24px;
-}
-h3 {
-    font-size: 16px;
-    font-weight: 400;
-}
-p {
-    font-size: var(--fx-p-size);
-    margin: 16px 0;
-}
-
 /*---section---*/
 .docsite-main-content {
     display: grid;

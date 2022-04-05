@@ -3,6 +3,31 @@ body {
     font-family: var(--sl-font-family);
 }
 
+/*---texts---*/
+h1 {
+    font-size: var(--fx-h1-size);
+    font-weight: 500;
+}
+h2 {
+    font: 400 var(--fx-h2-size)/32px var(--sl-font-family);
+    margin: 48px 0 24px;
+}
+h2:first-child {
+    margin: 8px 0 24px;
+}
+h3 {
+    font-size: 16px;
+    font-weight: 400;
+}
+h4 {
+    font-size: 15px;
+    font-weight: 100;
+}
+p {
+    font-size: var(--fx-p-size);
+    margin: 16px 0;
+}
+
 /*---header---*/
 header {
     display: grid;
@@ -206,9 +231,9 @@ header h1 {
     transition: .5s;
     transition-property: height;
 }
-.navigation ul li.open ul.submenu {
+/* .navigation ul li.open ul.submenu {
     height: 50px;
-}
+} */
 .navigation ul li.sub a.active {
     color: var(--fx-inv-color-txt);
 }
@@ -237,4 +262,66 @@ header h1 {
     .navigation {
         transform: translateX(-65px);
     }
+}
+
+.flex-articles-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.articles-tarjet {
+    width: 400px;
+    height: 300px;
+    margin: 20px 0 0 20px;
+    border-radius: 20px;
+    background: var(--fx-sec-bg);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+}
+
+.articles-tarjet .info {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 30px 1fr max-content;
+    grid-template-areas: 'icon name date';
+    margin: 0 5px;
+    position: absolute;
+    margin: 185px 10px 0;
+    width: 380px;
+}
+
+.articles-tarjet .info svg {
+    width: 30px;
+    height: 30px;
+    /* margin-right: 3px; */
+    filter: brightness(100);
+    grid-area: icon;
+}
+
+.articles-tarjet .docsite-page-title {
+    grid-area: name;
+    font-size: var(--fx-h1-size);
+    font-weight: 500;
+}
+
+.articles-tarjet .date {
+    grid-area: date;
+    font-size: 14px;
+}
+
+.articles-tarjet .img {
+    width: 100%;
+    height: 225px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    object-position: top;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.articles-tarjet .docsite-page-desc {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 5px 10px 0;
 }
