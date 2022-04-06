@@ -53,7 +53,8 @@ body.presentation {
 }
 .presentation-curtain .fotter-header {
     grid-area: 2;
-    display: grid;
+    /* display: grid; */
+    display: flex;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     opacity: 0;
@@ -213,4 +214,17 @@ h4.subtitle {
 }
 .presentation-curtain .fotter-header .actions .alternate-button.active .indicator {
     background-color: #44bd32;
+}
+
+@media screen and (max-width: 1024px) {
+    .presentation-content .content img {
+        max-width: 300px;
+        max-height: 300px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .presentation-content .content img {
+        max-width: 100px;
+        max-height: 100px;
+    }
 }
