@@ -5,6 +5,7 @@
 }
 body.presentation {
     font-family: 'Merriweather', serif;
+    scroll-behavior: smooth;
 }
 body.presentation .curtain {
     position: fixed;
