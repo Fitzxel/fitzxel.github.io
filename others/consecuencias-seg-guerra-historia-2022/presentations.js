@@ -2,15 +2,12 @@
 //     localStorage.setItem('slidesOn', 'true');
 // }
 
-const sections = document.querySelectorAll('.presentation-sections');
-
 const curtain = document.querySelector('#curtain');
+const sections = document.querySelectorAll('.sections');
+const backUpBtn = document.querySelector('#back-up');
 
 document.addEventListener('DOMContentLoaded', ()=> {
-    window.scrollTo(0, 0);
-})
-
-window.onload = ()=> {
+    // window.scrollTo(0, 0);
     document.querySelector('#load-bar').style.width = '100%';
     curtain.style.backgroundColor = '#353b48';
     setTimeout(() => {
@@ -24,8 +21,25 @@ window.onload = ()=> {
     setTimeout(() => {
         document.querySelector('.fotter-header').style.opacity = '1';
         curtain.style.boxShadow = '0 5px 20px 0px rgb(36 36 36 / 50%)';
-    }, 4000)
-}
+    }, 4000);
+})
+
+// window.onload = ()=> {
+//     document.querySelector('#load-bar').style.width = '100%';
+//     curtain.style.backgroundColor = '#353b48';
+//     setTimeout(() => {
+//         curtain.style.top = 'calc(-100% + 50px)';
+//     }, 3300);
+//     setTimeout(() => {
+//         for (let i = 0; i < sections.length; i++) {
+//             sections[i].style.opacity = '1';
+//         }
+//     }, 3500);
+//     setTimeout(() => {
+//         document.querySelector('.fotter-header').style.opacity = '1';
+//         curtain.style.boxShadow = '0 5px 20px 0px rgb(36 36 36 / 50%)';
+//     }, 4000);
+// }
 
 // change images
 
@@ -108,3 +122,23 @@ window.onload = ()=> {
 //         slideIn3();
 //     }, 10000);
 // }
+
+if (window.scrollY >= 1000) {
+    backUpBtn.style.display = 'block';
+}
+else {
+    backUpBtn.style.display = '';
+}
+
+window.addEventListener('scroll', ()=> {
+    if (window.scrollY >= 1000) {
+        backUpBtn.style.display = 'block';
+    }
+    else {
+        backUpBtn.style.display = '';
+    }
+})
+
+backUpBtn.addEventListener('click', ()=> {
+    window.scrollTo(0, 0);
+})

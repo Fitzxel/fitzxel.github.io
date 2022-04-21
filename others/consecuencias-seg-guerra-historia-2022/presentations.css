@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 * {
     background-size: cover;
@@ -132,6 +132,7 @@ p {
     font-size: 14px;
     margin: 0;
     margin-bottom: 5px;
+    color: #000;
 }
 h4.subtitle {
     font-size: 14px;

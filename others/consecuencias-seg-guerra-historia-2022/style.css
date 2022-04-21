@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+* {
+    background-size: cover;
+    background-position: center;
+}
+body.presentation {
+    font-family: 'Merriweather', serif;
+}
+body.presentation .curtain {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #2f3640;
+    background-image: url(./img/camuflaje.webp);
+    background-blend-mode: multiply;
+    background-size: contain;
+    top: 0;
+    z-index: 1;
+    transition: 1s;
+    display: grid;
+    grid-template-rows: 1fr 50px;
+    transition-property: top, background-color;
+}
+body.presentation .curtain .content {
+    grid-area: 1;
+    display: grid;
+    flex-direction: column;
+    grid-template-rows: max-content max-content;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+    grid-gap: 30px;
+}
+body.presentation .curtain .title h1 {
+    font-weight: 600;
+}
+body.presentation .curtain .progress-bar {
+    width: 300px;
+    height: 6px;
+    border-radius: 8px;
+    background-color: #dcdde1;
+    overflow: hidden;
+}
+body.presentation .curtain .progress-bar .indicator {
+    width: 0%;
+    height: 6px;
+    border-radius: 8px;
+    background-color: #7f8fa6;
+    transition: width 3s linear;
+}
+body.presentation .curtain .fotter-header {
+    grid-area: 2;
+    /* display: grid; */
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    opacity: 0;
+    padding: 0 50px;
+    transition: .5s;
+}
+body.presentation .curtain .fotter-header .title h1 {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+}
+body.presentation .curtain .fotter-header .title h4 {
+    display: inline-block;
+    font-size: 12px;
+}
+body.presentation .exhibit {
+    padding: 80px 50px 0.1px;
+    background-color: #2f3640;
+}
+body.presentation .exhibit .sections {
+    width: 100%;
+    margin-bottom: 30px;
+    background-color: #dcdde1;
+    opacity: 0;
+    transition: opacity .5s linear, background-color .2s linear;
+    padding: 15px;
+    background-blend-mode: soft-light;   
+}
+body.presentation .exhibit .sections:hover {
+    background-color: #e4e5e9;
+}
+body.presentation .exhibit .sections#consecuencias-generales {
+    background-image: url(./img/general.webp);
+}
+body.presentation .exhibit .sections#otras-consecuencias {
+    background-image: url(./img/otras.webp);
+}
+body.presentation .exhibit .sections#genocidio-judio {
+    background-image: url(./img/genocidio.webp);
+}
+body.presentation .exhibit .sections#bombas-atomicas {
+    background-image: url(./img/bomba.jpg);
+}
+body.presentation .exhibit .sections#cambio-del-mapa-de-europa {
+    background-image: url(./img/europa-map.webp);
+}
+body.presentation .exhibit .sections#reflexion {
+    background-image: url(./img/nubes.webp);
+}
+body.presentation .exhibit .sections .inside {
+    width: 100%;
+    height: 100%;
+    border: 4px solid #353b48;
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    align-items: center;
+}
+body.presentation .exhibit .sections .inside .title {
+    font-size: 16px;
+    text-align: center;
+    color: #000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+body.presentation .exhibit .sections .inside .subtitle {
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 20px;
+}
+body.presentation .exhibit .sections .inside .content {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+body.presentation .exhibit .sections .inside .content .lists-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+body.presentation .exhibit .sections .inside .content .lists-container .list {
+    margin-left: 50px;
+    height: fit-content;
+    border-bottom: 4px solid #353b48;
+    padding-bottom: 10px;
+    color: #000;
+    margin-bottom: 11px;
+}
+body.presentation .exhibit .sections .inside .content .lists-container .list.first {
+    margin-left: 0;
+}
+body.presentation .exhibit .sections .inside .content .lists-container .list.min {
+    max-width: 300px;
+}
+body.presentation .exhibit .sections .inside .content .lists-container .list.med {
+    max-width: 500px;
+}
+body.presentation .exhibit .sections .inside .content .lists-container .list.max {
+    max-width: 70%;
+}
+body.presentation .exhibit .sections .inside .content .lists-container .list li {
+    text-indent: 10px;
+}
+body.presentation .exhibit .sections .inside .content .lists-container .list li .list {
+    border: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+body.presentation .exhibit .sections .inside .content .lists-container .list li::marker {
+    content: '-';
+    font-weight: 600;
+}
+body.presentation .exhibit .sections .inside .content .lists-container .list li p {
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 5px;
+    color: #000;
+}
+body.presentation .exhibit .sections .inside .content .imagentext-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 0 20px 20px 20px;
+}
+body.presentation .exhibit .sections#cambio-del-mapa-de-europa .inside .content .imagentext-container {
+    flex-wrap: wrap;
+}
+body.presentation .exhibit .sections .inside .content .imagentext-container .lists-container {
+    padding-top: 20px;
+}
+body.presentation .exhibit .sections .inside .content img {
+    max-width: 500px;
+    border: 5px solid #f5f6fa;
+}
+#back-up {
+    display: none;
+    position: fixed;
+    opacity: .9;
+    right: 20px;
+    bottom: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgb(53, 59, 72);
+    color: #fff;
+    cursor: pointer;
+    border: 2px solid #fff;
+}
+#back-up:hover {
+    opacity: 1;
+}
+#back-up svg {
+    width: 24px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #7f8fa6;
+}
+
+@media screen and (max-width: 1024px) {
+    body.presentation .exhibit .sections .inside .content img {
+        max-width: 300px;
+        max-height: 300px;
+    }
+}
+@media screen and (max-width: 600px) {
+    body.presentation .curtain .fotter-header .title h1 {
+        font-size: 14px;
+    }
+    body.presentation .curtain .fotter-header .title h4 {
+        font-size: 10px;
+    }
+    body.presentation .exhibit .sections .inside .content img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+}
