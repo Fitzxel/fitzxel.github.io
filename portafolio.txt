@@ -1,0 +1,1 @@
+- seccion proyectos: con un subtitulo "proyectos principales" y un link "todos los proyectos".

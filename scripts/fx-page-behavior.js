@@ -1,42 +1,18 @@
-setWidthDsI();
+let navOpen = false;
+const navMenu = document.querySelector('#navigation-menu');
 
-const listButton = document.querySelectorAll('.content-list-aside__button');
-function activeLink() {
-    listButton.forEach((item) =>
-    item.classList.remove('active'));
-    this.classList.add('active');
-}
-listButton.forEach((item) =>
-item.addEventListener('click', activeLink));
-
-let navigationOpen = false;
-const navigationMenu = document.querySelector('#navigation-menu');
-
-document.querySelector('#navigation-button').addEventListener('click', ()=> {
-    if (navigationOpen == false) {
-        navigationMenu.classList.add('open');
-        navigationOpen = true;
+document.querySelector('#menu-btn').addEventListener('click', ()=> {
+    if (navOpen) {
+        navMenu.classList.remove('open');
+        navOpen = false;
     }
-    else if (navigationOpen == true) {
-        navigationMenu.classList.remove('open');
-        navigationOpen = false;
+    else {
+        navMenu.classList.add('open');
+        navOpen = true;
     }
-})
+});
 
-document.querySelector('.section').addEventListener('click', ()=> {
-    if (navigationOpen == true) {
-        navigationMenu.classList.remove('open');
-        navigationOpen = false;
-    }
-})
-
-let projectsSubmenuOpen = false;
-const projectsList = document.querySelector('#projects-list');
-
-if (document.URL.includes('projects/')) {
-    projectsList.classList.add('open');
-    projectsSubmenuOpen = true;
-}
+document.querySelector('#projects-submenu').style.height = 50*projectsArray.length + 'px';
 
 const toggleSubMenuBtns = document.querySelectorAll('.drop-submenu');
 
@@ -47,89 +23,163 @@ for (let i = 0; i < toggleSubMenuBtns.length; i++) {
             toggleSubMenuBtns[i].parentElement.parentElement.classList.remove('open');
         }
         else if (!toggleSubMenuBtns[i].parentElement.parentElement.classList.value.includes('open')) {
-            toggleSubMenuBtns[i].parentElement.parentElement.querySelector('.submenu').style.height = `calc(50px*${projectsArray.length})`;
+            toggleSubMenuBtns[i].parentElement.parentElement.querySelector('.submenu').style.height = 50*projectsArray.length + 'px';
             toggleSubMenuBtns[i].parentElement.parentElement.classList.add('open');
         }
     })
 }
 
-window.addEventListener('resize', ()=> {
-    setWidthDsI();
-})
-
-function setWidthDsI() {
-    if (document.documentElement.getAttribute('fx-site').split(',')[0] == 'docsite') {
-        document.querySelector('.docsite-banner').querySelector('.info').style.width = `calc(${window.getComputedStyle(document.querySelector('.docsite-banner')).width} - var(--fx-banner-info-lateral-margin) * 2)`;
-    }
-}
-
-const buttonsClick = document.querySelectorAll('.click-button');
-
-for (let i = 0; i < buttonsClick.length; i++) {
-    buttonsClick[i].addEventListener('click', ()=> {
-        buttonsClick[i].querySelector('ion-icon').classList.add('click');
-        setTimeout(() => {
-            buttonsClick[i].querySelector('ion-icon').classList.remove('click');
-        }, 500);
+function navCreateLiElemts() {
+    let documentFragment = document.createDocumentFragment();
+    projectsArray.forEach(project => {
+        let li = document.createElement('li');
+        li.classList.add('list', 'sub');
+        let a = document.createElement('a');
+        if (document.URL.slice(document.URL.lastIndexOf('/projects') + 10).split('/')[0] == project.this) {
+            a.classList.add('act');
+        }
+        a.href = project.url;
+        li.appendChild(a);
+        let icon = document.createElement('img');
+        icon.classList.add('icon');
+        icon.src = `../../projects/${project.this}/icon.svg`;
+        a.appendChild(icon);
+        let span = document.createElement('span');
+        span.classList.add('title');
+        span.textContent = project.name;
+        a.appendChild(span);
+        documentFragment.appendChild(li);
     });
+    document.querySelector('#projects-submenu').appendChild(documentFragment);
+}
+navCreateLiElemts();
+
+function createArticlesElements() {
+    let documentFragment = document.createDocumentFragment();
+    projectsArray.forEach(project => {
+        let a = document.createElement('a');
+        a.classList.add('articles-card');
+        a.setAttribute('href', project.url);
+        let banner = document.createElement('img');
+        banner.classList.add('banner');
+        banner.src = `../projects/${project.this}/banner.png`;
+        banner.alt = project.tags;
+        a.appendChild(banner);
+        let info = document.createElement('div');
+        info.classList.add('info');
+        let icon = document.createElement('img');
+        icon.classList.add('icon');
+        icon.src = `../projects/${project.this}/icon.svg`;
+        info.appendChild(icon);
+        let h2 = document.createElement('h2');
+        h2.classList.add('docsite-page-title');
+        h2.textContent = project.name;
+        info.appendChild(h2);
+        let span = document.createElement('span');
+        span.classList.add('date');
+        span.textContent = `Last modified: ${project.last.getDate()}-${project.last.getMonth() + 1}-${project.last.getFullYear()}`;
+        info.appendChild(span);
+        a.appendChild(info);
+        let h3 = document.createElement('h3');
+        h3.classList.add('docsite-page-desc');
+        h3.textContent = project.desc;
+        a.appendChild(h3);
+        documentFragment.appendChild(a);
+    });
+    document.querySelector('.flex-articles-container').appendChild(documentFragment);
 }
 
-// create sub li navigation for projects
-for (let i = 0; i < projectsArray.length; i++) {
-    navigationCreateLiElement(projectsArray[i]);
-}
-document.querySelector('#projects-submenu').style.height = `calc(50px*${projectsArray.length})`;
+let projectsSubmenuOpen = false;
+const projectsList = document.querySelector('#projects-list');
 
-if (document.documentElement.getAttribute('fx-site') == 'projects') {
-    for (let i = 0; i < projectsArray.length; i++) {
-        createArticleElement(projectsArray[i]);
-        // console.log(projectsArray[i].name);
+if (document.URL.includes('/projects')) {
+    projectsList.classList.add('open');
+    projectsSubmenuOpen = true;
+    if (document.URL.length == document.URL.lastIndexOf('/projects') + 10) {
+        createArticlesElements();
     }
 }
 
-else if (document.documentElement.getAttribute('fx-site').includes('docsite')) {
-    applyDocsiteData(projectsArray[document.documentElement.getAttribute('fx-site').split(',')[1]]);
-}
 
-function createArticleElement(project) {
-    let a = document.createElement('a');
-    a.setAttribute('href', project.url);
-    a.classList.add('articles-tarjet');
-    a.innerHTML = `
-    <div class="info">
-        ${project.icon}
-        <h1 class="docsite-page-title">${project.name}</h1>
-        <span class="date">Last modified: ${project.last.getDate()}-${project.last.getMonth() + 1}-${simpliteDocsite.last.getFullYear()}</span>
-    </div>
-    <img src="${project.banner}" alt="simplite extension image" class="img">
-    <h3 class="docsite-page-desc">${project.desc}</h3>
-    `;
-    document.querySelector('.flex-articles-container').appendChild(a);
-}
-
-function applyDocsiteData(project) {
-    document.querySelector('.info').innerHTML = `
-    ${project.icon}
-    <h1 class="docsite-page-title">${project.name}</h1>
-    <span class="date">Last modified: ${project.last.getDate()}-${project.last.getMonth() + 1}-${simpliteDocsite.last.getFullYear()}</span>
-    `;
-    document.querySelector('#docsite-banner').src = `.${project.banner}`;
-}
-
-function navigationCreateLiElement(project) {
-    let li = document.createElement('li');
-    li.classList.add('list', 'sub');
-    let inPage = '';
-    if (document.URL.includes(projectsArray[0].url.split('..')[1])) {
-        inPage = 'active';
+const searchResultsList = [
+    {
+        title: 'Projects',
+        url: '../../projects/',
+        desc: '',
+        relevant: true
+    },
+    {
+        title: 'Simplite',
+        url: '../../projects/simplite',
+        desc: projectsArray.find(element => element.this == 'simplite').desc,
+        relevant: true
     }
-    li.innerHTML = `
-    <a href="${project.url}" class="${inPage}">
-        <span class="icon">
-            <ion-icon name="folder-open-outline"></ion-icon>
-        </span>
-        <span class="title">${project.name}</span>
-    </a>
-    `;
-    document.querySelector('#projects-submenu').appendChild(li);
+];
+
+const searchInput = document.querySelector('#search-input');
+const searchResults = document.querySelector('#search-results');
+
+searchInput.addEventListener('focus', ()=> {
+    searchResults.style.display = 'block';
+    showRelevantsResults();
+});
+
+searchInput.addEventListener('input', ()=> {
+    let allA = searchResults.querySelectorAll('a');
+    if (searchInput.value.length > 0) {
+        let documentFragment = document.createDocumentFragment();
+        for (let i = 0; i < searchResultsList.length; i++) {
+            if (searchResultsList[i].title.slice(0, 5).toLocaleLowerCase().includes(searchInput.value.toLocaleLowerCase()) || searchResultsList[i].desc.toLocaleLowerCase().includes(searchInput.value.toLocaleLowerCase())) {
+                let a = document.createElement('a');
+                a.href = searchResultsList[i].url;
+                a.innerHTML = searchResultsList[i].title;
+                let h3 = document.createElement('h3');
+                h3.textContent = searchResultsList[i].desc
+                a.appendChild(h3);
+                documentFragment.appendChild(a);
+            }
+            else {
+                searchResults.querySelector('.over-text').innerHTML = 'Not results';
+            }
+        }
+        allA.forEach(element => {
+            element.remove();
+        });
+        searchResults.appendChild(documentFragment);
+    }
+    else {
+        searchResults.querySelector('.over-text').innerHTML = 'Results';
+        showRelevantsResults();
+    }
+});
+
+function showRelevantsResults() {
+    let allA = searchResults.querySelectorAll('a');
+    allA.forEach(element => {
+        element.remove();
+    });
+    let documentFragment = document.createDocumentFragment();
+    for (let i = 0; i < searchResultsList.length; i++) {
+        if (searchResultsList[i].relevant) {
+            let a = document.createElement('a');
+            a.href = searchResultsList[i].url;
+            a.innerHTML = searchResultsList[i].title;
+            let h3 = document.createElement('h3');
+            h3.textContent = searchResultsList[i].desc
+            a.appendChild(h3);
+            documentFragment.appendChild(a);
+        }
+    }
+    searchResults.appendChild(documentFragment);
 }
+
+
+document.body.addEventListener('click', (e)=>{
+    if (!e.composedPath().find(element => element.nodeName == 'NAV') && navOpen && !e.composedPath().find(element => element.nodeName == 'HEADER')) {
+        navMenu.classList.remove('open');
+        navOpen = false;
+    }
+    if (!e.composedPath().find(element => element == searchResults) && !e.composedPath().find(element => element == searchInput)) {
+        searchResults.style.display = '';
+    }
+});
