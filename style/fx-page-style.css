@@ -100,6 +100,7 @@ form.search input {
 }
 form.search input::placeholder {
     color: var(--fx-det-bg);
+    text-align: center;
 }
 form.search input:focus {
     width: 500px;

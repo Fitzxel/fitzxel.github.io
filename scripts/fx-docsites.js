@@ -72,16 +72,16 @@ let lastIntersectingScroll = 0;
 const callback = (entries, observer) => {
     entries.forEach(entry => {
         if (!entry.isIntersecting && entry.intersectionRatio < .5 && lastIntersectingScroll > window.scrollY) {
-            console.log(entry);
-            console.log(`salir de ${entry.target.id}`);
+            // console.log(entry);
+            // console.log(`salir de ${entry.target.id}`);
             document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.classList.remove('act');
             if (document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.previousElementSibling) {
                 document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.previousElementSibling.querySelector('.docsite-nav-link').parentElement.classList.add('act');
             }
         }
         if (entry.isIntersecting && entry.intersectionRatio >= .5) {
-            console.log(entry);
-            console.log(`entrar a ${entry.target.id}`);
+            // console.log(entry);
+            // console.log(`entrar a ${entry.target.id}`);
             lastIntersectingScroll = window.scrollY;
             document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.classList.add('act');
             if (document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.previousElementSibling) {
