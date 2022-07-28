@@ -116,6 +116,10 @@ const searchResultsList = [
     }
 ];
 
+document.addEventListener('submit', (e)=> {
+    e.preventDefault();
+});
+
 const searchInput = document.querySelector('#search-input');
 const searchResults = document.querySelector('#search-results');
 
