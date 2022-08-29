@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitzxel - Simplite Extension</title>
+    <title>Simplite New Tab - Fitzxel</title>
+    <meta name="description" content="Simplite New Tab replaces the browser's own new tab.">
     <link rel="icon" href="resources/favicon.svg">
     <link rel="stylesheet" href="../../style/fx-general-style.css">
     <link rel="stylesheet" href="../../style/fx-page-style.css">
@@ -14,11 +15,11 @@
         <button class="menu-btn" id="menu-btn">
             <ion-icon name="arrow-down"></ion-icon>
         </button>
-        <a href="/" class="home-btn">
+        <a href="/" class="home-btn" tabindex="1">
             Fitzxel
         </a>
         <form class="search">
-            <input type="text" placeholder="Search(inputText)" id="search-input" autocomplete="off">
+            <input type="text" placeholder="Search(inputText)" id="search-input" autocomplete="off" tabindex="2">
             <div id="search-results">
                 <div class="over-text">Results</div>
             </div>
@@ -33,118 +34,110 @@
             <ul>
                 <li class="list" id="projects-list">
                     <div class="flex">
-                        <a href="../../projects/" class="act">
+                        <a href="../../projects/" class="act" tabindex="3">
                             <span class="icon">
                                 <ion-icon name="code-slash-outline"></ion-icon>
                             </span>
                             <span class="title">Projects</span>
                         </a>
-                        <span class="icon drop-submenu" id="projects-drop-submenu">
+                        <span class="icon drop-submenu" id="projects-drop-submenu" tabindex="4">
                             <ion-icon name="chevron-down-outline"></ion-icon>
                         </span>
                     </div>
-                    <ul class="submenu" id="projects-submenu">
-                        <!--list js-->
-                    </ul>
+                    <ul class="submenu" id="projects-submenu"></ul>
                 </li>
-                <!-- <li class="list">
-                    <a href="#">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="title">Home</span>
-                    </a>
-                </li> -->
             </ul>
         </nav>
-        <div class="main-content docsite-article">
-            <div class="docsite-banner">
-                <img src="banner.png" alt="" class="img" id="docsite-banner">
-                <div class="info">
-                    <img src="icon.svg" alt="" class="icon">
-                    <h1 class="docsite-page-title"></h1>
-                    <span class="date"></span>
-                </div>
-            </div>
+        <div class="content">
             <article class="article">
-                <span class="token punctuation">{</span>
-                <ul>
-                    <li>
-                        <h3 class="token property">Description</h3>
-                        <span class="token operator">:&nbsp;</span>
-                        <p class="token string" id="desc"></p>
-                        <span class="token punctuation">,</span>
-                    </li>
-                    <li>
-                        <h3 class="token property">Repository</h3>
-                        <span class="token operator">:&nbsp;</span>
-                        <p class="token string">'<a href="" target="_blank" id="repo"></a>'</p>
-                        <span class="token punctuation">,</span>
-                    </li>
-                    <li>
-                        <h3 class="token property">Type</h3>
-                        <span class="token operator">:&nbsp;</span>
-                        <p class="token string" id="type"></p>
-                        <span class="token punctuation">,</span>
-                    </li>
-                    <li>
-                        <h3 class="token property">Languages</h3>
-                        <span class="token operator">:&nbsp;</span>
-                        <div id="append-langs"></div>
-                        <span class="token punctuation">,</span>
-                    </li>
-                    <li>
-                        <h3 class="token property">Get it</h3>
-                        <span class="token operator">:&nbsp;</span>
-                        <div id="append-getIts">
-                            <span class="token punctuation">[</span>
-                            <ul></ul>
-                            <span class="token punctuation">]</span>
+                <div class="article-header">
+                    <img src="banner.png" alt="" class="img" id="docsite-banner">
+                    <div class="metadata">
+                        <img src="icon.svg" alt="" class="icon">
+                        <h1 class="docsite-page-title"></h1>
+                        <time class="date"></time>
+                    </div>
+                </div>
+                <div class="content">
+                    <span class="token punctuation">{</span>
+                    <ul>
+                        <li>
+                            <h3 class="token property">Description</h3>
+                            <span class="token operator">:&nbsp;</span>
+                            <p class="token string" id="desc"></p>
                             <span class="token punctuation">,</span>
-                        </div>
-                    </li>
-                    <li>
-                        <h3 class="token property">Licence</h3>
-                        <span class="token operator">:&nbsp;</span>
-                        <p class="token string" id="licence"></p>
-                    </li>
-                </ul>
-                <span class="token punctuation">}</span>
-
-                <h2 id="about">About</h2>
-                <!-- <index-mark id="about"></index-mark> -->
-                <p>
-                    "Simplite New Tab" replaces the browser's own new tab.
-                </p>
-                <h3>
-                    <span></span>
-                </h3>
-                <h2 id="privacy-policy">Privacy policy</h2>
-                <!-- <index-mark id="privacy-policy"></index-mark> -->
-                <p>
-                    The "Simplite - New Tab" extension does not collect personal information or diagnostic data.
-                    <br>
-                    This information is subject to change.
-                </p>
+                        </li>
+                        <li>
+                            <h3 class="token property">Repository</h3>
+                            <span class="token operator">:&nbsp;</span>
+                            <p class="token string">'<a href="" target="_blank" id="repo"></a>'</p>
+                            <span class="token punctuation">,</span>
+                        </li>
+                        <li>
+                            <h3 class="token property">Type</h3>
+                            <span class="token operator">:&nbsp;</span>
+                            <p class="token string" id="type"></p>
+                            <span class="token punctuation">,</span>
+                        </li>
+                        <li>
+                            <h3 class="token property">Languages</h3>
+                            <span class="token operator">:&nbsp;</span>
+                            <div id="append-langs"></div>
+                            <span class="token punctuation">,</span>
+                        </li>
+                        <li>
+                            <h3 class="token property">Get it</h3>
+                            <span class="token operator">:&nbsp;</span>
+                            <div id="append-getIts">
+                                <span class="token punctuation">[</span>
+                                <ul></ul>
+                                <span class="token punctuation">]</span>
+                                <span class="token punctuation">,</span>
+                            </div>
+                        </li>
+                        <li>
+                            <h3 class="token property">Licence</h3>
+                            <span class="token operator">:&nbsp;</span>
+                            <p class="token string" id="licence"></p>
+                        </li>
+                    </ul>
+                    <span class="token punctuation">}</span>
+    
+                    <h2 id="about">About</h2>
+                    <p>
+                        "Simplite New Tab" replaces the browser's own new tab.
+                    </p>
+                    <h3>
+                        <span></span>
+                    </h3>
+                    <h2 id="privacy-policy">Privacy policy</h2>
+                    <p>
+                        The "Simplite - New Tab" extension does not collect personal information or diagnostic data.
+                        <br>
+                        This information is subject to change.
+                    </p>
+                </div>
             </article>
         </div>
-        <aside class="docsite-sidebar">
-            <div class="sidebar-content">
-                <span class="docsite-nav-title docsite-nav-text">In this article</span>
-                <ul class="docsite-nav-list">
-                    <li class="docsite-nav-item">
-                        <a class="docsite-nav-link" href="#about">
-                            <span class="docsite-nav-text">About</span>
+        <aside class="aside">
+            <div class="content">
+                <span class="title">In this article</span>
+                <ul class="nav">
+                    <li>
+                        <a href="#about">
+                            About
                         </a>
                     </li>
-                    <li class="docsite-nav-item">
-                        <a class="docsite-nav-link" href="#privacy-policy">
-                            <span class="docsite-nav-text">Privacy policy</span>
+                    <li>
+                        <a href="#privacy-policy">
+                            Privacy policy
                         </a>
                     </li>
                 </ul>
             </div>
         </aside>
     </main>
-    <script src="../../scripts/fx-projects-objects.js"></script>
+    <script src="../../scripts/fx-projects-objects.js" async></script>
     <script src="../../scripts/fx-page-behavior.js"></script>
     <script src="../../scripts/fx-docsites.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

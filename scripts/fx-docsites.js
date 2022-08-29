@@ -1,5 +1,5 @@
 let asideOpen = false;
-const aside = document.querySelector('.docsite-sidebar');
+const aside = document.querySelector('.aside');
 
 document.querySelector('#aside-btn').addEventListener('click', ()=> {
     if (asideOpen) {
@@ -17,9 +17,10 @@ document.querySelector('#docsite-banner').addEventListener('load', ()=> {
 });
 
 function applyDocsiteData(project) {
-    document.querySelector('.info').querySelector('.icon').alt = project.tags;
-    document.querySelector('.info').querySelector('h1').textContent = project.name;
-    document.querySelector('.info').querySelector('span').textContent = `Last modified: ${project.last.getDate()}-${project.last.getMonth() + 1}-${project.last.getFullYear()}`;
+    document.querySelector('.metadata').querySelector('.icon').alt = project.tags;
+    document.querySelector('.metadata').querySelector('h1').textContent = project.name;
+    document.querySelector('.metadata').querySelector('time').dateTime = `${project.last.getFullYear()}-${project.last.getMonth()+1}-${project.last.getDate()}`
+    document.querySelector('.metadata').querySelector('time').textContent = `Last modified: ${project.last.getDate()}-${project.last.getMonth()+1}-${project.last.getFullYear()}`;
     document.querySelector('#docsite-banner').alt = project.tags;
     document.querySelector('#desc').textContent = `'${project.desc}'`;
     document.querySelector('#repo').href = project.repo;
@@ -74,21 +75,21 @@ const callback = (entries, observer) => {
         if (!entry.isIntersecting && entry.intersectionRatio < .5 && lastIntersectingScroll > window.scrollY) {
             // console.log(entry);
             // console.log(`salir de ${entry.target.id}`);
-            document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.classList.remove('act');
-            if (document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.previousElementSibling) {
-                document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.previousElementSibling.querySelector('.docsite-nav-link').parentElement.classList.add('act');
+            document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.classList.remove('act');
+            if (document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.previousElementSibling) {
+                document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.previousElementSibling.querySelector('a').parentElement.classList.add('act');
             }
         }
         if (entry.isIntersecting && entry.intersectionRatio >= .5) {
             // console.log(entry);
             // console.log(`entrar a ${entry.target.id}`);
             lastIntersectingScroll = window.scrollY;
-            document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.classList.add('act');
-            if (document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.previousElementSibling) {
-                document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.previousElementSibling.querySelector('.docsite-nav-link').parentElement.classList.remove('act');
+            document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.classList.add('act');
+            if (document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.previousElementSibling) {
+                document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.previousElementSibling.querySelector('a').parentElement.classList.remove('act');
             }
-            if (document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.nextElementSibling) {
-                document.querySelector(`.docsite-nav-item .docsite-nav-link[href="#${entry.target.id}"]`).parentElement.nextElementSibling.querySelector('.docsite-nav-link').parentElement.classList.remove('act');
+            if (document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.nextElementSibling) {
+                document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.nextElementSibling.querySelector('a').parentElement.classList.remove('act');
             }
         }
     });

@@ -1,0 +1,26 @@
+[
+    {
+        "name": "projects-page",
+        "title": "Projects",
+        "desc": "",
+        "url": "https://fitzxel.github.io/projects/",
+        "hidden": false,
+        "search": {
+            "index": true,
+            "relevant": true
+        },
+        "type": "page"
+    },
+    {
+        "name": "simplite",
+        "title": "Simplite New Tab",
+        "desc": "Simplite New Tab replaces the browsers own new tab.",
+        "url": "",
+        "hidden": false,
+        "search": {
+            "index": true,
+            "relevant": true
+        },
+        "type": "project-doc-page"
+    }
+]

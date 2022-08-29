@@ -1,4 +1,3 @@
-
 h2 {
     margin: 48px 0 24px;
 }
@@ -6,17 +5,6 @@ h2 {
 /*---section---*/
 main {
     grid-template-columns: 230px minmax(200px,936px) minmax(200px,1fr);
-}
-.docsite-sidebar {
-    grid-column: 3;
-    grid-row: 1;
-    min-width: 0;
-    width: auto;
-    padding: 24px;
-    background: var(--fx-pry-bg);
-}
-.docsite-sidebar.open {
-    transform: none;
 }
 
 /*---aside---*/
@@ -31,90 +19,97 @@ main .dropdown-aside {
     border-bottom: 1px solid var(--fx-det-bg);
     z-index: 1;
 }
-.sidebar-content {
+.aside {
+    grid-column: 3;
+    grid-row: 1;
+    min-width: 0;
+    padding: 24px;
+    background: var(--fx-pry-bg);
+    font-size: 13px;
+}
+.aside.open {
+    transform: none;
+}
+.aside .content {
     position: fixed;
 }
-.docsite-nav-list {
-    padding-left: 12px;
-    padding-right: 8px;
-    border-left: 4px solid var(--fx-accent-color);
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+.aside ul.nav {
+    margin-top: 10px;
 }
-.docsite-nav-title {
+.aside ul.nav li {
+    padding: 8px;
+    border-left: 5px solid var(--fx-sec-bg);
+}
+.aside .title {
     font-weight: 700;
     color: var(--fx-det-color);
+    border-bottom: 1px solid var(--fx-det-bg);
 }
-.docsite-nav-text {
-    font-size: 13px;
-    padding: 4px 0;
-}
-.docsite-nav-item.act {
+.aside ul.nav li.act {
     color: var(--fx-accent-color);
+    background: var(--fx-sec-bg);
+    border-left: 5px solid var(--fx-accent-color);
 }
-.docsite-nav-link {
+.aside ul.nav li a {
     display: flex;
     align-items: center;
-    padding: 4 0;
     color: inherit;
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
     text-decoration: none;
 }
-.docsite-nav-link:hover {
+.aside ul.nav li a:hover {
     color: var(--fx-accent-color);
-}
-.docsite-nav-link.active {
-    color: var(--docsite-nav-active-color);
 }
 
 /*---page-content---*/
-.docsite-article {
+/* .docsite-article {
     max-width: 936px;
     min-width: 0;
-}
+} */
 
-/*---page-banner---*/
-.docsite-banner {
+/*---docsite-banner---*/
+.article-header {
     position: relative;
     height: var(--fx-banner-height);
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
     overflow: hidden;
+    border: 0px, 1px solid var(--fx-det-bg);
 }
-.docsite-banner .info {
-    margin: calc(var(--fx-banner-height) - 100px + 55px) var(--fx-banner-info-lateral-margin) 0;
+.article-header .metadata {
     display: grid;
-    align-items: center;
-    grid-template-columns: 30px 1fr max-content;
-    grid-template-areas: 'icon name date';
+    grid-template-columns: 30px 1fr;
+    grid-template-rows: 30px 1fr;
+    /* grid-template-areas: 'icon name date'; */
+    padding: 245px 30px 0;
     color: #fff;
 }
-.docsite-banner .info .icon {
+.article-header .metadata .icon {
     width: 30px;
     filter: brightness(100);
-    grid-area: icon;
+    grid-area: 1;
 }
-/* .docsite-banner svg {
+/* .article-header svg {
     width: 30px;
     height: 30px;
     /* margin-right: 3px;
     filter: brightness(100);
     grid-area: icon;
 } */
-.docsite-banner h1 {
-    grid-area: name;
+.article-header h1 {
+    grid-area: 1/2;
+    align-self: center;
 }
-.docsite-banner .date {
-    grid-area: date;
+.article-header .date {
+    grid-area: 2/2;
+    font-size: var(--fx-p-size);
 }
-/* .docsite-banner .date-info h1 {
+/* .article-header .date-info h1 {
     position: absolute;
     margin-top: calc(var(--fx-banner-height) - 100px + 60px);
     margin-left: 30px;
 } */
-.docsite-banner .img {
+.article-header .img {
     /* opacity: 0; */
     position: absolute;
     width: 100%;
@@ -126,12 +121,12 @@ main .dropdown-aside {
 }
 
 /*---article---*/
-.article {
+/* .article {
+    padding: 40px;
+} */
+.article .content {
     padding: 40px;
 }
-/* index-mark {
-    position: relative;
-} */
 .article h1 {
     display: inline-block;
 }
@@ -173,13 +168,13 @@ main .dropdown-aside {
         justify-content: center;
         padding: 0 30px;
     }
-    .docsite-sidebar {
+    .aside {
         position: fixed;
         top: calc(var(--fx-bar-height) + 24px);
         width: 100%;
         transform: translateY(-100%);
     }
-    .sidebar-content {
+    .aside .content {
         position: static;
     }
     main .dropdown-aside {
@@ -187,16 +182,12 @@ main .dropdown-aside {
         justify-content: center;
         align-items: center;
     }
-    .docsite-article {
+    .article {
         width: 100%;
         margin-top: 24px;
     }
 }
 @media screen and (max-width: 768px) {
-    .docsite-main-content {
-        display: block;
-        padding: 0 3%;
-    }
     .article {
         padding: 20px;
     }
