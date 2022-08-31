@@ -15,7 +15,7 @@
         "name": "simplite",
         "title": "Simplite New Tab",
         "desc": "Simplite New Tab replaces the browsers own new tab.",
-        "url": "",
+        "url": "https://fitzxel.github.io/simpliteNewTab/",
         "hidden": false,
         "search": {
             "index": true,
