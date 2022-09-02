@@ -15,7 +15,7 @@ indexData.forEach(item => {
             a.classList.add('act');
         }
         a.tabIndex = indexN;
-        a.href = project.url;
+        a.href = project.page_url;
         // append a on li.list.sub
         li.appendChild(a);
         // create span.title element
