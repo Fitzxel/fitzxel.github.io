@@ -11,10 +11,10 @@ indexData.forEach(item => {
         li.classList.add('list', 'sub');
         // create a element
         let a = createElement('a');
+        a.classList.add('tabindex');
         if (docData.name == project.name) {
             a.classList.add('act');
         }
-        a.tabIndex = indexN;
         a.href = project.page_url;
         // append a on li.list.sub
         li.appendChild(a);
@@ -26,11 +26,11 @@ indexData.forEach(item => {
         a.appendChild(title);
         // append li on documentFragment
         documentFragmentProjectsList.appendChild(li);
-        indexN++;
     }
 });
 
 // append documentFragment on ul#projects-list
 nav.querySelector('#projects-list').appendChild(documentFragmentProjectsList);
 // remove not-allowed class on nav
-nav.classList.remove('not-allowed');
+nav.querySelector('ul.not-allowed').classList.remove('not-allowed');
+setTabIndex();
