@@ -18,6 +18,7 @@ function showRelevantsResults() {
     indexData.forEach(result => {
         if (result.search.relevant) {
             let a = createElement('a');
+            a.classList.add('type-1');
             a.href = result.url;
             a.textContent = result.title;
             let h3 = createElement('h3');
@@ -60,16 +61,17 @@ searchInput.addEventListener('input', ()=> {
         indexData.forEach(result => {
             if (result.search.index) {
                 if (result.title.toLocaleLowerCase().includes(string) || result.desc.toLocaleLowerCase().includes(string)) {
-                    let a = document.createElement('a');
+                    let a = createElement('a');
+                    a.classList.add('type-1');
                     a.href = result.url;
-                    let span = document.createElement('span');
-                    span.textContent = result.title;
-                    a.appendChild(span);
-                    let h3 = document.createElement('h3');
+                    a.textContent = result.title;
+                    // let span = createElement('span');
+                    // span.textContent = result.title;
+                    // a.appendChild(span);
+                    let h3 = createElement('h3');
                     h3.textContent = result.desc;
                     a.appendChild(h3);
                     documentFragment.appendChild(a);
-                    
                 }
                 else {
                     searchResults.querySelector('.over-text').textContent = 'Not results';
