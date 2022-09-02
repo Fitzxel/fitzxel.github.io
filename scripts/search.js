@@ -9,22 +9,28 @@ const searchResults = document.querySelector('#search-results');
 let searchFocus = false;
 let notBlur = false;
 
+let documentFragment;
+
+function createAElement(result) {
+    let a = createElement('a');
+    a.classList.add('type-1');
+    a.href = result.page_url;
+    a.textContent = result.title;
+    let h3 = createElement('h3');
+    h3.textContent = result.desc;
+    a.appendChild(h3);
+    documentFragment.appendChild(a);
+}
+
 function showRelevantsResults() {
     let allA = searchResults.querySelectorAll('a');
     allA.forEach(element => {
         element.remove();
     });
-    let documentFragment = document.createDocumentFragment();
+    documentFragment = document.createDocumentFragment();
     indexData.forEach(result => {
         if (result.search.relevant) {
-            let a = createElement('a');
-            a.classList.add('type-1');
-            a.href = result.url;
-            a.textContent = result.title;
-            let h3 = createElement('h3');
-            h3.textContent = result.desc;
-            a.appendChild(h3);
-            documentFragment.appendChild(a);
+            createAElement(result);
         }
         searchResults.appendChild(documentFragment);
         searchResults.querySelector('a').classList.add('act');
@@ -57,21 +63,11 @@ searchInput.addEventListener('input', ()=> {
     let allA = searchResults.querySelectorAll('a');
     let string = searchInput.value;
     if (searchInput.value.length > 0) {
-        let documentFragment = document.createDocumentFragment();
+        documentFragment = document.createDocumentFragment();
         indexData.forEach(result => {
             if (result.search.index) {
                 if (result.title.toLocaleLowerCase().includes(string) || result.desc.toLocaleLowerCase().includes(string)) {
-                    let a = createElement('a');
-                    a.classList.add('type-1');
-                    a.href = result.url;
-                    a.textContent = result.title;
-                    // let span = createElement('span');
-                    // span.textContent = result.title;
-                    // a.appendChild(span);
-                    let h3 = createElement('h3');
-                    h3.textContent = result.desc;
-                    a.appendChild(h3);
-                    documentFragment.appendChild(a);
+                    createAElement(result);
                 }
                 else {
                     searchResults.querySelector('.over-text').textContent = 'Not results';
@@ -90,76 +86,11 @@ searchInput.addEventListener('input', ()=> {
     }
 });
 
-
-// searchInput.addEventListener('input', ()=> {
-//     let allA = searchResults.querySelectorAll('a');
-//     let string = searchInput.value;
-//     if (searchInput.value.length > 0) {
-//         let documentFragment = document.createDocumentFragment();
-//         searchResultsList.forEach(searchResult => {
-//             if (searchResult.name.toLocaleLowerCase().includes(string) || searchResult.desc.toLocaleLowerCase().includes(string)) {
-//                 let a = document.createElement('a');
-//                 a.href = searchResult.url;
-//                 let span = document.createElement('span');
-//                 span.textContent = searchResult.name;
-//                 a.appendChild(span);
-//                 let h3 = document.createElement('h3');
-//                 h3.textContent = searchResult.desc;
-//                 a.appendChild(h3);
-//                 documentFragment.appendChild(a);
-                
-//             }
-//             else {
-//                 searchResults.querySelector('.over-text').innerHTML = 'Not results';
-//             }
-
-//             // NOT WORKING 100%
-//             // if (searchResult.name != prevResult) {
-//             //     searchInput.value.split(' ').forEach(string => {
-//             //         string = string.toLocaleLowerCase();
-//             //         if (searchResult.name.toLocaleLowerCase().includes(string) || searchResult.desc.toLocaleLowerCase().includes(string)) {
-//             //             let name_pos = [
-//             //                 searchResult.name.toLocaleLowerCase().indexOf(string),
-//             //                 searchResult.name.toLocaleLowerCase().indexOf(string) + string.length
-//             //             ];
-//             //             let desc_pos = [
-//             //                 searchResult.desc.toLocaleLowerCase().indexOf(string),
-//             //                 searchResult.desc.toLocaleLowerCase().indexOf(string) + string.length
-//             //             ];
-//             //             let a = document.createElement('a');
-//             //             a.href = searchResult.url;
-//             //             let span = document.createElement('span');
-//             //             span.innerHTML = searchResult.name.replaceAll(searchResult.name.slice(name_pos[0], name_pos[1]), `<b>${searchResult.name.slice(name_pos[0], name_pos[1])}</b>`);
-//             //             // span.textContent = searchResultsList[i].name.toLocaleLowerCase().replaceAll(searchInput.value.toLocaleLowerCase(), `<b>${searchResultsList[i].name.slice(searchInput.value.toLocaleLowerCase(), searchInput.value.length)}</b>`);
-//             //             a.appendChild(span);
-//             //             let h3 = document.createElement('h3');
-//             //             h3.innerHTML = searchResult.desc.replaceAll(searchResult.desc.slice(desc_pos[0], desc_pos[1]), `<b>${searchResult.desc.slice(desc_pos[0], desc_pos[1])}</b>`);
-//             //             a.appendChild(h3);
-//             //             documentFragment.appendChild(a);
-                        
-//             //         }
-//             //         else {
-//             //             searchResults.querySelector('.over-text').innerHTML = 'Not results';
-//             //         }
-//             //     });
-//             // }
-//         });
-//         allA.forEach(element => {
-//             element.remove();
-//         });
-//         searchResults.appendChild(documentFragment);
-//         allA = searchResults.querySelectorAll('a');
-//         allA[0].classList.add('act');
-//     }
-//     else {
-//         searchResults.querySelector('.over-text').innerHTML = 'Results';
-//         showRelevantsResults();
-//     }
-// });
-
+// search form controls
 searchInput.addEventListener('keydown', (e)=> {
     let allA = searchResults.querySelectorAll('a');
     let a = searchResults.querySelector('a.act');
+    // on press arrow up, switch selected to the upper "a" element
     if (e.key == 'ArrowUp') {
         if (a.previousElementSibling.nodeName == 'A') {
             a.classList.remove('act');
@@ -170,6 +101,7 @@ searchInput.addEventListener('keydown', (e)=> {
             allA[allA.length-1].classList.add('act');
         }
     }
+    // on press arrow down, switch selected to the lower "a" element
     if (e.key == 'ArrowDown') {
         if (a.nextElementSibling && a.nextElementSibling.nodeName == 'A') {
             a.classList.remove('act');
@@ -180,6 +112,7 @@ searchInput.addEventListener('keydown', (e)=> {
             allA[0].classList.add('act');
         }
     }
+    // on press enter, give click on the "a" element selected
     if (e.key == 'Enter') {
         a.click();
     }
