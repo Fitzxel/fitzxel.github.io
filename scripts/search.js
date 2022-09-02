@@ -61,24 +61,32 @@ searchResults.addEventListener('mouseup', ()=> {
 
 searchInput.addEventListener('input', ()=> {
     let allA = searchResults.querySelectorAll('a');
-    let string = searchInput.value;
+    let string = searchInput.value.toLocaleLowerCase();
     if (searchInput.value.length > 0) {
         documentFragment = document.createDocumentFragment();
+        let indexedsN = 0;
+        let noMatchN = 0;
         indexData.forEach(result => {
             if (result.search.index) {
+                indexedsN++;
                 if (result.title.toLocaleLowerCase().includes(string) || result.desc.toLocaleLowerCase().includes(string)) {
                     createAElement(result);
                 }
                 else {
-                    searchResults.querySelector('.over-text').textContent = 'Not results';
+                    noMatchN++;
                 }
             }
         });
         allA.forEach(element => {
             element.remove();
         });
-        searchResults.appendChild(documentFragment);
-        searchResults.querySelector('a').classList.add('act');
+        if (noMatchN >= indexedsN) {
+            searchResults.querySelector('.over-text').textContent = 'Not results';
+        }
+        else {
+            searchResults.appendChild(documentFragment);
+            searchResults.querySelector('a').classList.add('act');
+        }
     }
     else {
         searchResults.querySelector('.over-text').textContent = 'Results';
