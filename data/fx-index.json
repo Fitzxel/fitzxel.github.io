@@ -3,7 +3,8 @@
         "name": "projects-page",
         "title": "Projects",
         "desc": "",
-        "url": "https://fitzxel.github.io/projects/",
+        "page_url": "https://fitzxel.github.io/projects/",
+        "repository_url": "https://github.com/Fitzxel/fitzxel.github.io/tree/master/projects",
         "hidden": false,
         "search": {
             "index": true,
@@ -15,7 +16,8 @@
         "name": "simplite",
         "title": "Simplite New Tab",
         "desc": "Simplite New Tab replaces the browsers own new tab.",
-        "url": "https://fitzxel.github.io/simpliteNewTab/",
+        "page_url": "https://fitzxel.github.io/simpliteNewTab/",
+        "repository_url": "https://github.com/Fitzxel/simpliteNewTab",
         "hidden": false,
         "search": {
             "index": true,
