@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page not found - Fitzxel</title>
-    <link rel="stylesheet" href="https://fitzxel.github.io/style/fx-general-style.css">
-    <link rel="stylesheet" href="https://fitzxel.github.io/style/fx-page-style.css">
+    <link rel="stylesheet" href="https://fitzxel.github.io/simpliteNewTab/src/fx-page.css">
+    <link rel="stylesheet" href="https://fitzxel.github.io/simpliteNewTab/src/fx-docs.css">
     <style>
         div#backSVG {
             position: fixed;
@@ -16,10 +16,12 @@
             z-index: -1;
         }
         div#content {
+            margin-top: 100px;
+        }
+        div#content, div#ifMatchs {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 100px;
         }
         h1 {
             font-size: 60px;
@@ -41,7 +43,99 @@
             background: var(--docsite-link-color);
             color: #fff;
         }
+
+        button.cancel-redirects {
+            position: relative;
+            width: 200px;
+            padding: 10px;
+            z-index: 1;
+        }
+        button.cancel-redirect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgb(151, 13, 13);
+            animation: redirect 3.5s forwards;
+            z-index: -1;
+        }
+        button.cancel-redirect.cancel::before {
+            animation-play-state: paused;
+        }
+        button.cancel-redirect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--fx-sec-bg);
+            z-index: -2;
+        }
+        div#ifMatchs ul {
+            min-width: 200px
+        }
+
+        @keyframes redirect {
+            100% {
+                width: 100%;
+            }
+        }
     </style>
+    <script>
+        // get index.json for get matches
+        fetch('https://fitzxel.github.io/data/fx-index.json').then(res=> {
+            if (res.status >= 200 && res.status <= 299) {
+                res.json().then(res=> {
+                    let matchFound = false;
+                    let matchs = [];
+                    let cancelRedirect = false;
+                    res.forEach(e => {
+                        if (location.href.toLocaleLowerCase().search(e.name) >= 0 || location.href.toLocaleLowerCase().search(e.title.replaceAll(' ', '').toLocaleLowerCase()) >= 0) {
+                            matchFound = true;
+                            matchs.push(e);
+                        }
+                    });
+                    if (matchFound) {
+                        let documentFragment = document.createDocumentFragment();
+                        let h2 = document.createElement('h2');
+                        h2.textContent = 'Redirecting to first match found...';
+                        documentFragment.appendChild(h2);
+                        let button = document.createElement('button');
+                        button.classList.add('cancel-redirect');
+                        button.textContent = 'Cancel';
+                        button.addEventListener('click', ()=> {
+                            cancelRedirect = true;
+                            button.classList.add('cancel');
+                        });
+                        documentFragment.appendChild(button);
+                        let ul = document.createElement('ul');
+                        matchs.forEach(match => {
+                            let li = document.createElement('li');
+                            let a = document.createElement('a');
+                            a.classList.add('type-l');
+                            a.href = match.page_url;
+                            a.textContent = match.title;
+                            li.appendChild(a);
+                            ul.appendChild(li);
+                        });
+                        documentFragment.appendChild(ul);
+                        document.querySelector('#ifMatchs').appendChild(documentFragment);
+                        setTimeout(() => {
+                            if (cancelRedirect == false) {
+                                location.href = matchs[0].page_url;
+                            }
+                        }, 3500);
+                    }
+                });
+            }
+            else if (res.status >= 400 && res.status <= 499) {
+                console.log(`An error has occurred (${res.status})`);
+            }
+        });
+    </script>
 </head>
 <body>
     <div id="backSVG">
@@ -52,6 +146,7 @@
     <div id="content">
         <h1>404</h1>
         <p>Page/File not found</p>
+        <div id="ifMatchs"></div>
         <h2>Are you lost?</h2>
         <a href="https://fitzxel.github.io/">Go to the main page</a>
     </div>
