@@ -124,4 +124,9 @@ searchInput.addEventListener('keydown', (e)=> {
     if (e.key == 'Enter') {
         a.click();
     }
+    // on press escape, quit focus to searchInput
+    if (e.key == 'Escape') {
+        e.preventDefault();
+        searchInput.blur();
+    }
 });
