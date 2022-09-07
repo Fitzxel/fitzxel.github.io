@@ -382,56 +382,6 @@ main > .content {
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 1;
-    /* transition-duration: .3s; */
-}
-/* .projects-nav.open {
-    transform: none;
-} */
-.projects-nav li a {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding-left: 4px;
-    text-decoration: none;
-    color: var(--fx-color);
-}
-.projects-nav a::before {
-    content: '';
-    width: 10px;
-    height: 3px;
-    background: var(--fx-sec-bg);
-    position: absolute;
-    top: 17px;
-    z-index: 1;
-}
-.projects-nav a.act::before {
-    content: '';
-    width: 10px;
-    height: 3px;
-    background: var(--fx-accent-color);
-    position: absolute;
-    top: 17px;
-    z-index: 1;
-}
-.projects-nav a:hover {
-    color: var(--fx-det-color);
-}
-.projects-nav a:focus-visible {
-    outline: none;
-    color: var(--fx-det-color);
-}
-.projects-nav a:focus-visible::before {
-    background: var(--fx-color);
-}
-.projects-nav a .title {
-    position: relative;
-    display: block;
-    padding-left: 20px;
-    line-height: var(--fx-btn-mid-height);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 .projects-nav .icon.drop-submenu {
     position: absolute;

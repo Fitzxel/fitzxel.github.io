@@ -11,7 +11,7 @@ indexData.forEach(item => {
         li.classList.add('list', 'sub');
         // create a element
         let a = createElement('a');
-        a.classList.add('tabindex');
+        a.classList.add('type-l', 'tabindex');
         if (docData.name == project.name) {
             a.classList.add('act');
         }
