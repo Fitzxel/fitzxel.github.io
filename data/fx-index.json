@@ -5,7 +5,6 @@
         "desc": "",
         "page_url": "https://fitzxel.github.io/projects/",
         "repository_url": "https://github.com/Fitzxel/fitzxel.github.io/tree/master/projects",
-        "hidden": false,
         "search": {
             "index": true,
             "relevant": true
@@ -16,9 +15,8 @@
         "name": "simplite",
         "title": "Simplite New Tab",
         "desc": "A simple and light new tab.",
-        "page_url": "https://fitzxel.github.io/simpliteNewTab/",
-        "repository_url": "https://github.com/Fitzxel/simpliteNewTab",
-        "hidden": false,
+        "page_url": "https://fitzxel.github.io/docs/simplite-new-tab",
+        "repository_url": "https://github.com/Fitzxel/simplite-new-tab",
         "search": {
             "index": true,
             "relevant": true

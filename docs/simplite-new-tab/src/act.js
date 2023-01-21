@@ -1,5 +1,11 @@
 const createElement = document.createElement.bind(document);
 
+// fetch('../docData.json').then(res=> {
+//     res.text().then(res=> {
+//         console.log(res);
+//     })
+// })
+
 // set head info
 // set page title
 document.title = `${docData.title} - Fitzxel`;
@@ -102,46 +108,45 @@ document.querySelector('.metadata').querySelector('h1').textContent = docData.ti
 document.querySelector('.metadata').querySelector('time').dateTime = `${docData.lastDate.getFullYear()}-${docData.lastDate.getMonth()+1}-${docData.lastDate.getDate()}`
 document.querySelector('.metadata').querySelector('time').textContent = `Last modified: ${docData.lastDate.getDate()}-${docData.lastDate.getMonth()+1}-${docData.lastDate.getFullYear()}`;
 document.querySelector('#docsite-banner').alt = docData.tags;
-document.querySelector('#desc').textContent = `'${docData.desc}'`;
+document.querySelector('#desc').innerHTML = `'${docData.desc}'<span class="token punctuation">,</span>`;
 document.querySelector('#repo').href = docData.repo;
-document.querySelector('#repo').innerHTML = docData.repo;
-document.querySelector('#type').textContent = `'${docData.type}'`;
+document.querySelector('#repo').innerHTML = docData.repo.split('/')[docData.repo.split('/').length - 1];
+document.querySelector('#type').innerHTML = `'${docData.type}'<span class="token punctuation">,</span>`;
+document.querySelector('#licence').innerHTML = `'${docData.licence}'<span class="token punctuation">,</span>`;
 // set languages
-let documentFragmentLangs = document.createDocumentFragment();
+let fragmentLangs = document.createDocumentFragment();
 for (let i = 0; i < docData.programing_langs.length; i++) {
     let li = createElement('li');
     let p = createElement('p');
     p.classList.add('token', 'string');
     p.innerHTML = `'${docData.programing_langs[i].toLocaleUpperCase()}'`;
-    li.appendChild(p);
     if (docData.programing_langs.length > i+1) {
         let tokenPunct = createElement('span');
         tokenPunct.classList.add('token', 'punctuation');
         tokenPunct.textContent = ',';
-        li.appendChild(tokenPunct);
+        p.appendChild(tokenPunct);
     }
-    documentFragmentLangs.appendChild(li);
+    li.appendChild(p);
+    fragmentLangs.appendChild(li);
 }
-document.querySelector('#append-langs ul').appendChild(documentFragmentLangs);
+document.querySelector('#append-langs ul').appendChild(fragmentLangs);
 // set getIts
-let documentFragmentGetIt = document.createDocumentFragment();
+let fragmentGetIt = document.createDocumentFragment();
 for (let i = 0; i < docData.getIt.length; i++) {
     let li = document.createElement('li');
     let p = document.createElement('p');
     p.classList.add('token', 'string');
     p.innerHTML = `'<a href="${docData.getIt[i].url}" target="_blank">${docData.getIt[i].title}</a>'`;
-    li.appendChild(p);
     if (docData.getIt.length > i+1) {
         let tokenPunct = document.createElement('span');
         tokenPunct.classList.add('token', 'punctuation');
         tokenPunct.textContent = ',';
-        li.appendChild(tokenPunct);
+        p.appendChild(tokenPunct);
     }
-    documentFragmentGetIt.appendChild(li);
+    li.appendChild(p);
+    fragmentGetIt.appendChild(li);
 }
-document.querySelector('#append-getIts ul').appendChild(documentFragmentGetIt);
-// set licence text
-document.querySelector('#licence').textContent = `'${docData.licence}'`;
+document.querySelector('#append-getIts ul').appendChild(fragmentGetIt);
 
 // declare setTabIndex function
 function setTabIndex() {
@@ -161,6 +166,7 @@ articleH2.forEach(h2 => {
     let a = createElement('a');
     a.href = `#${h2.id}`;
     a.textContent = h2.textContent;
+    a.title = `Content: ${h2.textContent}`;
     a.classList.add('type-1', 'tabindex');
     li.appendChild(a);
     // append li in aside nav
@@ -212,7 +218,7 @@ articleH2.forEach(h2 => {
 // dropdown (projects-nav and the aside)
 let dropdownOpen = false;
 
-document.querySelector('#menu-btn').addEventListener('click', ()=> {
+function altDropdown() {
     if (!dropdownOpen) {
         if (window.innerWidth <= 600) {
             document.querySelector('.projects-nav').style.transform = `translateY(${document.querySelector('.aside').offsetHeight}px)`;
@@ -228,6 +234,16 @@ document.querySelector('#menu-btn').addEventListener('click', ()=> {
         document.querySelector('main').classList.remove('dropdown-open');
         dropdownOpen = false;
     }
+}
+
+document.querySelector('#menu-btn').addEventListener('click', ()=> {
+    altDropdown();
+});
+
+document.querySelectorAll('.projects-nav a, .aside a').forEach(element=> {
+    element.addEventListener('click', ()=> {
+        altDropdown();
+    });
 });
 
 // declare indexData variable
@@ -299,4 +315,10 @@ window.addEventListener('resize', ()=> {
     if (window.innerWidth > 910) {
         document.querySelector('.aside').style.height = ``;
     }
+});
+// let lastScroll = 0;
+window.addEventListener('scroll', ()=> {
+    if (window.scrollY >= 60) document.querySelector('.article-header').classList.add('scroll');
+    else document.querySelector('.article-header').classList.remove('scroll');
+    // lastScroll = window.scrollY;
 });

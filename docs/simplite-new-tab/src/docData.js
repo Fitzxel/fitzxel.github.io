@@ -9,7 +9,6 @@ const docData = {
         'new tab',
         'extension'
     ],
-    // url: '../../projects/simplite/',
     programing_langs: [
         'html',
         'css',
@@ -23,11 +22,9 @@ const docData = {
             url: 'https://bit.ly/simplitemse'
         }
     ],
-    licence: '',
+    licence: 'MIT License',
     availible_langs: [
         'en',
         'es'
     ]
-//     article_content: {
-//     }
 }

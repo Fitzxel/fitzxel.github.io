@@ -2,11 +2,6 @@ h2 {
     margin: 48px 0 24px;
 }
 
-/*---section---*/
-/* main {
-    grid-template-columns: 230px minmax(200px,936px) minmax(200px,1fr);
-} */
-
 /*---aside---*/
 main .dropdown-aside {
     display: none;
@@ -28,24 +23,23 @@ main .dropdown-aside {
     margin: 30px 0;
     padding: 10px 0;
     height: max-content;
-    max-height: calc(100vh - 60px);
+    max-height: calc(100vh - var(--fx-header-height));
     background: var(--fx-pry-bg);
     overflow: auto;
 }
+.aside header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--fx-det-bg);
+}
 .aside .title {
+    flex: 1;
     font-size: 17px;
     letter-spacing: 1px;
     color: var(--fx-color);
-    border-bottom: 1px solid var(--fx-det-bg);
     margin: 0;
-    margin-bottom: 10px;
 }
-
-/*---page-content---*/
-/* .docsite-article {
-    max-width: 936px;
-    min-width: 0;
-} */
 
 /*---docsite-banner---*/
 .article-header {
@@ -53,6 +47,10 @@ main .dropdown-aside {
     height: var(--fx-banner-height);
     overflow: hidden;
     border: 0px, 1px solid var(--fx-det-bg);
+    background: var(--fx-sec-bg);
+}
+.article-header.scroll {
+    height: 91px;
 }
 .article-header .metadata {
     position: absolute;
@@ -63,20 +61,12 @@ main .dropdown-aside {
     width: 100%;
     padding: 20px;
     color: #fff;
-    /* background-image: linear-gradient(360deg, var(--fx-pry-bg), transparent); */
 }
 .article-header .metadata .icon {
     width: 30px;
     filter: brightness(100);
     grid-area: 1;
 }
-/* .article-header svg {
-    width: 30px;
-    height: 30px;
-    /* margin-right: 3px;
-    filter: brightness(100);
-    grid-area: icon;
-} */
 .article-header h1 {
     grid-area: 1/2;
     align-self: center;
@@ -85,14 +75,7 @@ main .dropdown-aside {
     grid-area: 2/2;
     font-size: var(--fx-p-size);
 }
-/* .article-header .date-info h1 {
-    position: absolute;
-    margin-top: calc(var(--fx-banner-height) - 100px + 60px);
-    margin-left: 30px;
-} */
 .article-header .img {
-    /* opacity: 0; */
-    /* position: absolute; */
     width: 100%;
     height: 100%;
     aspect-ratio: 16/9;
@@ -100,18 +83,13 @@ main .dropdown-aside {
     object-fit: cover;
     z-index: -1;
 }
-
-/*---article---*/
-/* .article {
-    padding: 40px;
-} */
 .article .article-body {
     display: grid;
     grid-template-columns: 1fr var(--fx-aside-width);
 }
 .article .content {
-    width: 100%;
-    padding: 40px;
+    max-width: 100vw;
+    padding: 40px 20px;
 }
 .article h1 {
     display: inline-block;
@@ -130,31 +108,19 @@ main .dropdown-aside {
 .article .project-data-container li p {
     margin: 0;
 }
-/* .article .article-body .content a::after {
-    content: "";
-    display: inline-flex;
-    width: 10px;
-    height: 10px;
-    margin-left: 4px;
-    background-color: #fff;
-    -webkit-mask: url(https://fitzxel.github.io/resources/open-outline.svg);
-    mask: url(https://fitzxel.github.io/resources/open-outline.svg);
-    -webkit-mask-size: cover;
-    mask-size: cover;
-} */
-/* .article .icon:hover {
-    transform: scale(1.6);
-} */
 
-/* @media screen and (max-width: 1010px) {
-
-} */
+@media screen and (max-width: 1200px) {
+    :root {
+        --fx-banner-height: 400px;
+    }
+}
 @media screen and (max-width: 910px) {
     .article .article-body {
         display: block;
     }
     .aside {
         position: fixed;
+        top: var(--fx-header-height);
         width: 51%;
         margin: 0;
         padding-left: 2%;
@@ -168,16 +134,26 @@ main .dropdown-aside {
 }
 @media screen and (max-width: 768px) {
     :root {
-        --fx-banner-height: 250px;
+        --fx-banner-height: 350px;
         --fx-banner-info-lateral-margin: 10px;
     }
 }
 @media screen and (max-width: 600px) {
     :root {
-        --fx-banner-height: 150px;
+        --fx-banner-height: 250px;
     }
     .aside {
         width: 100%;
+    }
+}
+@media screen and (max-width: 475px) {
+    :root {
+        --fx-banner-height: 225px;
+    }
+}
+@media screen and (max-width: 445px) {
+    .article .project-data-container li {
+        display: inline-block;
     }
 }
 @media screen and (max-width: 425px) {
